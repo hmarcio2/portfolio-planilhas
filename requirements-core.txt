@@ -1,0 +1,1 @@
+portfolio-core[langchain,langfuse] @ git+https://github.com/hmarcio2/portfolio-core.git@v0.3.0

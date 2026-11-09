@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agente analista de planilhas</title>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/">HM</a>
+  <nav><span class="muted">Projeto 02 · Agente analista de planilhas</span></nav>
+</header>
+
+<main>
+  <h1 class="title">Pergunte aos seus dados</h1>
+  <p class="lead">Envie uma planilha e converse com um agente que roda SQL de verdade sobre ela, mostra gráficos e aponta insights.</p>
+
+  <section id="upload-box" class="panel">
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept=".csv,.xlsx">
+      <strong>Escolha um .csv ou .xlsx</strong>
+      <span class="muted">ou arraste para cá · até 5 MB · apagado em 30 minutos</span>
+    </label>
+    <p class="muted small">Não envie dados pessoais ou sigilosos. O conteúdo é processado por uma IA via API.</p>
+    <p id="upload-status" class="status" role="status"></p>
+  </section>
+
+  <section id="workspace" hidden>
+    <div class="panel">
+      <div class="row between">
+        <strong id="filename"></strong>
+        <span class="row gap">
+          <a class="btn" id="report" href="#" download="analise.md">Baixar relatório</a>
+          <button type="button" class="btn" id="reset">Nova planilha</button>
+        </span>
+      </div>
+      <div id="tables" class="tables"></div>
+    </div>
+
+    <div id="log" class="log" role="log" aria-live="polite"></div>
+
+    <ul id="examples" class="chips examples"></ul>
+    <form id="form" class="ask" autocomplete="off">
+      <input id="question" type="text" maxlength="1000" placeholder="Ex.: qual categoria vendeu mais por mês?" aria-label="Pergunta" required>
+      <button type="submit" class="btn primary" id="send">Perguntar</button>
+    </form>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</body>
+</html>

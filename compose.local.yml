@@ -1,0 +1,14 @@
+# Desenvolvimento: constrói a imagem e publica a porta (sem a rede "edge").
+#   cp .env.example .env   (preencha GOOGLE_API_KEY)
+#   docker compose -f compose.yml -f compose.local.yml up --build
+# O build usa o portfolio-core da pasta ../_core (workspace), então não precisa publicá-lo antes.
+# Sem essa pasta, remova "additional_contexts" para instalar o core pela tag do GitHub.
+services:
+  planilhas:
+    build:
+      context: .
+      additional_contexts:
+        core: ../_core
+    networks: !override [default]
+    ports:
+      - "8002:8000"

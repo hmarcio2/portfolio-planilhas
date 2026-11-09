@@ -1,0 +1,15 @@
+# Subdomínio do projeto planilhas. Instalado em /opt/edge/sites/planilhas.caddy pelo deploy.
+planilhas.{$DOMAIN} {
+	encode zstd gzip
+	request_body {
+		max_size 6MB
+	}
+	reverse_proxy planilhas:8000 {
+		flush_interval -1
+	}
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options DENY
+	}
+}

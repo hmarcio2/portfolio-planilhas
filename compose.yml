@@ -1,0 +1,22 @@
+# Produção/VPS: só puxa a imagem do GHCR. A rede "edge" é criada pelo repositório portfolio-edge.
+# Localmente, use também o compose.local.yml (constrói a imagem e publica a porta).
+services:
+  planilhas:
+    image: ${IMAGE:-ghcr.io/hmarcio2/portfolio-planilhas}:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORTFOLIO_TRUST_PROXY: "1"
+    networks: [edge]
+    read_only: true
+    tmpfs:
+      - /tmp:size=512m
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 1g
+
+networks:
+  edge:
+    external: true
+    name: edge
